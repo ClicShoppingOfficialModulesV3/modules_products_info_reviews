@@ -19,7 +19,7 @@ http://monsite/myAdmin/modules.php?set=modules_products_info
 
 Activate the module in Design / Products Description
 
-Link market place : https://www.clicshopping.org/forum/files/file/48-modules-products-info-reviews-and-customer-feedback/
+Link market place : https://www.clicshopping.org/forum/files/file/52-modules-products-description-reviews-and-customer-feedback/
 
 See forum for all informations
 
