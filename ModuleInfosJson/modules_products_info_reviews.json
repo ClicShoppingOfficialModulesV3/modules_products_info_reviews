@@ -1,7 +1,7 @@
 {
   "title":			"modules_products_info_reviews",
   "type":       "products_info",
-  "vendor":			"ClicShopping",
+  "vendor":			"modules_products_info",
   "is_free":   "no",
   "website_link_to_sell" : "https://www.clicshopping.org/forum/files/file/52-modules-products-description-reviews-and-customer-feedback/",
   "version":			1.0,
