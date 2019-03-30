@@ -1,4 +1,4 @@
-# modules_products_reviews
+# modules_products_info_reviews
 
 This module allow to display customer reviews and button write insid eproducts description
 
@@ -6,7 +6,7 @@ This module contains
 
 - The language files in English and French
 - The css file in French and English
-- The module
+- The module.
   
 Via the installation system administration ClicShopping
 
@@ -42,6 +42,6 @@ All informations about the ClicShopping
 
  trademark License info : https://www.clicshopping.org/forum/trademark/ 
  
- ![image](https://github.com/ClicShoppingOfficialModulesV3/modules_products_reviews/blob/master/ModuleInfosJson/image.png)
+ ![image](https://github.com/ClicShoppingOfficialModulesV3/modules_products_info_reviews/blob/master/ModuleInfosJson/image.png)
 
 
