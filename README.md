@@ -1,6 +1,8 @@
 # modules_products_info_reviews
 
-This module allow to display customer reviews and button write insid eproducts description
+Allow to display the customer comment inside the products description catalog and the customer feedback (if you have installed this module)
+You can manage the summary and the number of the comment.
+The customer writes the comment can delete the comment anytime (GDPR) 
 
 This module contains
 
@@ -43,5 +45,3 @@ All informations about the ClicShopping
  trademark License info : https://www.clicshopping.org/forum/trademark/ 
  
  ![image](https://github.com/ClicShoppingOfficialModulesV3/modules_products_info_reviews/blob/master/ModuleInfosJson/image.png)
-
-

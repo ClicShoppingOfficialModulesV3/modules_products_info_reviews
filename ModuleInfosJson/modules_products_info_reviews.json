@@ -15,7 +15,7 @@
   "type_module":      "template",
   "dependance":       "",
   "description":        "This module allow to display the customers reviews with a button write inside products description",
-   "image":            "",
+ "image":              "ModuleInfosJson/reviews.png",
 
   "authors": [
     {
