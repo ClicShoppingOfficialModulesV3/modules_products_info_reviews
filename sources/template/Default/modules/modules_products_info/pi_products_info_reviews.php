@@ -50,7 +50,7 @@
         $products_reviews_content = HTMLOverrideCommon::starHeaderTagRateYo();
 
 //*******************************************
-// products review<
+// products review
 //********************************************
         $Qreviews = $CLICSHOPPING_Db->prepare('select r.reviews_id,
                                                        left(rd.reviews_text, :limitText ) as reviews_text,
@@ -89,15 +89,17 @@
         $QorderProducts->bindValue(':products_id', $CLICSHOPPING_ProductsCommon->getID());
         $QorderProducts->execute();
 
-        $products_reviews_content .= '<!-- Start products_REVIEWS -->' . "\n";
+        $products_reviews_content = '<!-- Start products_REVIEWS -->' . "\n";
+        $products_reviews_content .= '<div class="separator"></div>';
         $products_reviews_content .= '<div class="' . $content_width . '">';
+        $products_reviews_content .= '<hr>';
         $products_reviews_content .= '<div class="separator"></div>';
 
          if ($count_review >= 1 || $QorderProducts->rowCount() >= 1) {
 
           $products_reviews_content .= '<div class="moduleProductsInfoReviewsRow" itemprop="review" itemscope itemtype="https://schema.org/Review">';
           $products_reviews_content .= '<div class="moduleProductsInfoReviewsTitle">';
-          $products_reviews_content .= '<span class="page-header moduleProductsInfoReviewsTitle"  itemprop="name"><h3>' . CLICSHOPPING::getDef('heading_rewiews')  . ' ' . $CLICSHOPPING_ProductsCommon->getProductsName() . '</h3></span>';
+          $products_reviews_content .= '<span class="page-title moduleProductsInfoReviewsTitle"  itemprop="name"><h3>' . CLICSHOPPING::getDef('heading_rewiews')  . ' ' . $CLICSHOPPING_ProductsCommon->getProductsName() . '</h3></span>';
           $products_reviews_content .= '</div>';
           $products_reviews_content .= '<div class="float-md-right">';
           $products_reviews_content .= '';
@@ -137,21 +139,24 @@
 //*******************************************
 // customers_feedback
 //********************************************
-           if ($count_review != 0) {
-
+           if ($count_review !== 0) {
              $details_button = HTML::button(CLICSHOPPING::getDef('button_all_reviews'), null, CLICSHOPPING::link(null, 'Products&Reviews&products_id=' . $CLICSHOPPING_ProductsCommon->getID()), 'info');
              $write_button = HTML::button(CLICSHOPPING::getDef('button_write_review'), null, CLICSHOPPING::link(null, 'Products&ReviewsWrite&products_id=' . $CLICSHOPPING_ProductsCommon->getID()), 'success');
 
              $products_reviews_content .= '<div class="clearfix"></div>';
-
-             $products_reviews_content .= '<span class="col-md-2">' . $details_button . '</span>';
-             $products_reviews_content .= '<span class="col-md-10 text-md-right">' . $write_button . '</span>';
+             $products_reviews_content .= '<div class="separator"></div>';
+             $products_reviews_content .= '<span class="col-md-6">' . $details_button . '</span>';
+             $products_reviews_content .= '<span class="col-md-6 text-md-right">' . $write_button . '</span>';
            }
          }
 
-        if( $count_review == 0) {
-          $write_button = HTML::button(CLICSHOPPING::getDef('button_write_review'), null, CLICSHOPPING::link(null, 'Products&ReviewsWrite&products_id=' . $CLICSHOPPING_ProductsCommon->getID()), 'success');
+        if($count_review === 0) {
+          $write_button = HTML::button(CLICSHOPPING::getDef('button_write_review'), null, CLICSHOPPING::link(null, 'Products&ReviewsWrite&products_id=' . $CLICSHOPPING_ProductsCommon->getID()), 'info');
+          $products_reviews_content .= '<div class="separato"></div>';
+          $products_reviews_content .= '<div class="col-md-12">';
+          $products_reviews_content .= '<div class="moduleProductsInfoNoReview">' . CLICSHOPPING::getDef('text_info_no_reviews') . '</div>';
           $products_reviews_content .= '<div class="text-md-right">' . $write_button . '</div>';
+          $products_reviews_content .= '<div>';
         }
 
         $products_reviews_content .= '</div>' . "\n";
@@ -173,10 +178,10 @@
       $CLICSHOPPING_Db = Registry::get('Db');
 
       $CLICSHOPPING_Db->save('configuration', [
-          'configuration_title' => 'Souhaitez-vous activer ce module ?',
+          'configuration_title' => 'Do you want to enable this module ?',
           'configuration_key' => 'MODULE_PRODUCTS_INFO_REVIEWS_STATUS',
           'configuration_value' => 'True',
-          'configuration_description' => 'Souhaitez vous activer ce module à votre boutique ?',
+          'configuration_description' => 'Do you want to enable this module in your shop ?',
           'configuration_group_id' => '6',
           'sort_order' => '1',
           'set_function' => 'clic_cfg_set_boolean_value(array(\'True\', \'False\'))',
@@ -185,10 +190,10 @@
       );
 
       $CLICSHOPPING_Db->save('configuration', [
-          'configuration_title' => 'Veuillez selectionner la largeur de l\'affichage?',
+          'configuration_title' => 'Please select the width of the display?',
           'configuration_key' => 'MODULE_PRODUCTS_INFO_REVIEWS_CONTENT_WIDTH',
           'configuration_value' => '12',
-          'configuration_description' => 'Veuillez indiquer un nombre compris entre 1 et 12',
+          'configuration_description' => 'Please enter a number between 1 and 12',
           'configuration_group_id' => '6',
           'sort_order' => '1',
           'set_function' => 'clic_cfg_set_content_module_width_pull_down',
@@ -197,10 +202,10 @@
       );
 
       $CLICSHOPPING_Db->save('configuration', [
-          'configuration_title' => 'Combien de commentaires souhaitez-vous afficher ?',
+          'configuration_title' => 'How many comments would you like to display ?',
           'configuration_key' => 'MODULE_PRODUCTS_INFO_REVIEWS_NUMBER_COMMENTS',
           'configuration_value' => '5',
-          'configuration_description' => 'Veuillez indiquer le nombre de commentaires que vous souhaitez afficher ?',
+          'configuration_description' => 'Please indicate the number of comments you wish to display ?',
           'configuration_group_id' => '6',
           'sort_order' => '2',
           'set_function' => '',
@@ -210,10 +215,10 @@
 
 
       $CLICSHOPPING_Db->save('configuration', [
-          'configuration_title' => 'Combien de mots souhaitez-vous afficher ?',
+          'configuration_title' => 'How many words do you want to display ?',
           'configuration_key' => 'MODULE_PRODUCTS_INFO_REVIEWS_NUMBER_WORDS',
           'configuration_value' => '300',
-          'configuration_description' => 'Veuillez indiquer le nombre de mots que vous souhaitez afficher ?',
+          'configuration_description' => 'Please indicate the number of words you wish to display ?',
           'configuration_group_id' => '6',
           'sort_order' => '3',
           'set_function' => '',
@@ -223,20 +228,16 @@
 
 
       $CLICSHOPPING_Db->save('configuration', [
-          'configuration_title' => 'Ordre de tri d\'affichage',
+          'configuration_title' => 'Sort order',
           'configuration_key' => 'MODULE_PRODUCTS_INFO_REVIEWS_SORT_ORDER',
-          'configuration_value' => '100',
-          'configuration_description' => 'Ordre de tri pour l\'affichage (Le plus petit nombre est montré en premier)',
+          'configuration_value' => '700',
+          'configuration_description' => 'Sort order of display. Lowest is displayed first. The sort order must be different on every module',
           'configuration_group_id' => '6',
           'sort_order' => '4',
           'set_function' => '',
           'date_added' => 'now()'
         ]
       );
-
-      return $CLICSHOPPING_Db->save('configuration', ['configuration_value' => '1'],
-                                              ['configuration_key' => 'WEBSITE_MODULE_INSTALLED']
-                            );
     }
 
     public function remove() {
